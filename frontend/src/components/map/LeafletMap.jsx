@@ -102,7 +102,7 @@ export default function LeafletMap({
     apartments.forEach((apt) => {
       const icon = L.divIcon({
         className: 'pin-anchor',
-        html: `<div class="${pinClass(tierOf(apt.price), cbRef.current.viewedIds?.has(apt.aptId))}">${pinHtml(apt)}</div>`,
+        html: `<div class="${pinClass(tierOf(apt.price), cbRef.current.viewedIds?.has(apt.aptId), apt.live)}">${pinHtml(apt)}</div>`,
         iconSize: null,
       });
       const marker = L.marker([apt.lat, apt.lng], { icon, title: apt.name, riseOnHover: true }).addTo(map);

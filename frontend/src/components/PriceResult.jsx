@@ -17,7 +17,7 @@ export default function PriceResult({ input, price, guAvg }) {
       </div>
       <p className="result-price">{formatPrice(price)}</p>
       <p className="muted">
-        {input.gu} · {formatArea(input.areaM2)} · {input.floor}층 · {input.builtYear}년 준공
+        {input.gu}, {formatArea(input.areaM2)}, {input.floor}층, {input.builtYear}년 준공
       </p>
 
       <div className="detail-kpis">
@@ -37,7 +37,7 @@ export default function PriceResult({ input, price, guAvg }) {
         </div>
       </div>
 
-      <Link to={mapLink} className="btn btn-ghost">비슷한 면적 매물 지도에서 보기 →</Link>
+      <Link to={mapLink} className="btn btn-ghost">비슷한 면적 매물 지도에서 보기</Link>
       <Disclaimer />
     </section>
   );

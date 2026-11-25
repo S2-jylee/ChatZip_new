@@ -4,12 +4,21 @@ import axios from 'axios';
 export const USE_MOCK = import.meta.env.VITE_USE_MOCK === 'true';
 
 /**
+ * 부분 연결: MOCK 이어도 여기 적은 기능만 실서버 사용 (예: VITE_LIVE_API=estates,stats)
+ *  estates = 지도 · 매물찾기 · 상세 · 실거래 (아파트 매매만) / stats = 지역별분석
+ */
+const LIVE = new Set(String(import.meta.env.VITE_LIVE_API ?? '').split(',').map((s) => s.trim()).filter(Boolean));
+export const isLive = (feature) => LIVE.has(feature);
+export const LIVE_APIS = [...LIVE];
+
+/**
  * Spring Boot (:8080) — 세션 쿠키를 보내야 하므로 withCredentials 필수
  * CSRF: Spring CookieCsrfTokenRepository 의 XSRF-TOKEN 쿠키를 X-XSRF-TOKEN 헤더로 (포트가 달라도 보내도록 withXSRFToken)
  * AI(FastAPI)는 Spring 을 거쳐서만 호출 (정리본 "추천·예측")
  */
 export const api = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || 'http://localhost:8080',
+  // 비워 두면 같은 주소(/api…)로 요청 → 개발 중엔 Vite 프록시(VITE_PROXY_TARGET)가 백엔드로 넘겨 줌 (CORS 없이)
+  baseURL: import.meta.env.VITE_API_URL ?? 'http://localhost:8080',
   withCredentials: true,
   withXSRFToken: true,
   timeout: 10000,

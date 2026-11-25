@@ -24,11 +24,11 @@ export default function MapTooltip({ apt, onEnter, onLeave, onDetail }) {
   return (
     <div className="map-tip" ref={ref}>
       <div className="map-tip-head">
-        <span className="map-tip-region">{apt.gu} · {apt.dong}</span>
+        <span className="map-tip-region">{apt.gu} {apt.dong}</span>
         <FavoriteButton aptId={apt.aptId} icon />
       </div>
       <strong className="map-tip-name">{apt.name}</strong>
-      <span className="map-tip-meta">{formatArea(apt.areaM2)} · {apt.floor}층 · {apt.builtYear}년 준공</span>
+      <span className="map-tip-meta">{formatArea(apt.areaM2)}, {apt.floor}층, {apt.builtYear}년 준공</span>
       {apt.nearestStation && <span className="map-tip-meta">{stationText(apt.nearestStation)}</span>}
       <div className="map-tip-price">
         <span>{apt.dealType && apt.dealType !== 'sale' ? dealLabel(apt.dealType) : '실거래가'} <small>{formatDate(apt.dealDate)}</small></span>
@@ -36,7 +36,7 @@ export default function MapTooltip({ apt, onEnter, onLeave, onDetail }) {
       </div>
       {/* 터치 화면용: 말풍선에서 바로 상세로 */}
       {onDetail && (
-        <button type="button" className="map-tip-more" onClick={onDetail}>상세 정보 보기 ›</button>
+        <button type="button" className="map-tip-more" onClick={onDetail}>상세 정보 보기</button>
       )}
     </div>
   );

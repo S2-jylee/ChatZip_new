@@ -18,7 +18,7 @@
   border: 0; background: transparent; font-size: 24px; line-height: 1; color: var(--muted); cursor: pointer;
 }
 .auth-close:hover { background: var(--bg); color: var(--ink); }
-.auth-title { margin: 0 0 20px; font-size: 28px; font-weight: 900; letter-spacing: -0.03em; color: var(--navy); }
+.auth-title { margin: 0 0 20px; font-size: 28px; font-weight: 800; letter-spacing: -0.03em; color: var(--navy); }
 
 .auth-modal .form .btn-primary { background: var(--btn); border-color: var(--btn); }
 
@@ -31,7 +31,7 @@
   background: #fee500; color: #191919; cursor: pointer;
 }
 .btn-kakao:hover:not(:disabled) { background: #f5dc00; }
-.btn-kakao:disabled { opacity: 0.6; cursor: default; }
+.btn-kakao:disabled { background: var(--disabled-bg); color: var(--disabled-ink); cursor: not-allowed; }
 .auth-kakao-note { margin: 8px 0 0; font-size: 13px; color: var(--muted); text-align: center; }
 
 .auth-divider { display: flex; align-items: center; gap: 12px; margin: 22px 0 14px; color: var(--muted); font-size: 13px; }

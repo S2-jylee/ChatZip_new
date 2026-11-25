@@ -83,8 +83,8 @@ export function placeEl(place) {
   return wrap;
 }
 
-/** 가격 마커 클래스 — 본 매물은 viewed */
-export const pinClass = (tier, viewed) => `map-pin tier-${tier}${viewed ? ' viewed' : ''}`;
+/** 가격 마커 클래스 — 본 매물은 viewed, 실서버(백엔드)에서 온 매물은 is-live (노란색) */
+export const pinClass = (tier, viewed, live) => `map-pin tier-${tier}${viewed ? ' viewed' : ''}${live ? ' is-live' : ''}`;
 
 /** 가격 마커 내용: 위 "35평"(전용면적 기준) · 아래 "10.3억" (월세는 "500/45") */
 export function pinHtml(apt) {

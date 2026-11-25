@@ -142,7 +142,7 @@ export default function ListingModal({ id, onClose, variant = 'modal' }) {
         )}
 
         {apt.type === 'villa' && deal !== 'monthly' && (
-          <JeonseRatio aptId={apt.aptId} source={dataSourceOf('villa', 'sale').replace('매매)', '매매 · 전월세)')} />
+          <JeonseRatio aptId={apt.aptId} source={dataSourceOf('villa', 'sale').replace('매매)', '매매, 전월세)')} />
         )}
         {apt.type === 'oneroom' && deal !== 'sale' && <HousingCost apt={apt} />}
         {apt.type === 'villa' && <ContractCheck violation={apt.violation} />}
@@ -155,7 +155,7 @@ export default function ListingModal({ id, onClose, variant = 'modal' }) {
     <header className="modal-head">
       <div>
         {isSide && <button type="button" className="side-back" onClick={onClose}>← 목록</button>}
-        {apt && <span className="eyebrow">{typeInfo(apt.type).label} · {apt.gu} {apt.dong}</span>}
+        {apt && <span className="eyebrow">{typeInfo(apt.type).label}, {apt.gu} {apt.dong}</span>}
         <h2 className="modal-title">{apt?.name ?? '매물 상세'}</h2>
       </div>
       <div className="modal-head-actions">

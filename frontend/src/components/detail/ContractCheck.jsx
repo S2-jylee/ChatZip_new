@@ -1,3 +1,4 @@
+import Icon from '../Icon';
 // 빌라 계약 전 확인 — 위반건축물 여부(건축물대장) + 체크리스트와 공식 발급 링크
 // 링크는 공공기관 공식 사이트만. 등기부 열람·발급 수수료는 사용자가 인터넷등기소에서 직접 냄 (우리 비용 없음)
 const CHECKS = [
@@ -21,7 +22,7 @@ export default function ContractCheck({ violation }) {
       <h3 className="modal-h">계약 전 확인</h3>
       {violation !== undefined && (
         <div className={`violation violation-${v.kind}`}>
-          <strong>{v.kind === 'danger' ? '⚠ ' : ''}{v.label}</strong>
+          <strong>{v.kind === 'danger' && <Icon name="alert" className="icon-lead" />}{v.label}</strong>
           <span>{v.desc}</span>
         </div>
       )}

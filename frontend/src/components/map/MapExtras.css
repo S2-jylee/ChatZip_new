@@ -7,6 +7,9 @@
 /* 단지 테두리가 있는 매물: 분홍 (본 매물이어도 분홍). index.css 의 tier 배경색보다 우선하도록 선택자를 강하게 */
 .map-pin.has-boundary:not(.active):not(:hover) { --pin: #e8559a; background: #e8559a; }
 .map-pin.has-boundary:not(.active):not(:hover)::after { border-top-color: #e8559a; }
+/* 실서버(백엔드)에서 받은 매물: 노란색 (본 매물·테두리보다 우선) */
+.map-pin.is-live:not(.active):not(:hover) { --pin: #facc15; background: #facc15; color: #1f2937; }
+.map-pin.is-live:not(.active):not(:hover)::after { border-top-color: #facc15; }
 .map-pin:hover, .map-pin.active { --pin: var(--accent); }
 .map-pin, .map-pin.tier-low, .map-pin.tier-mid, .map-pin.tier-high, .map-pin.tier-top,
 .map-pin:hover, .map-pin.active {
@@ -19,7 +22,7 @@
   bottom: -6px; border: 5px solid transparent; border-bottom: 0; border-top: 6px solid var(--pin);
 }
 .pin-py { font-size: 10px; font-weight: 700; opacity: 0.88; }
-.pin-price { font-size: 13px; font-weight: 900; letter-spacing: -0.02em; }
+.pin-price { font-size: 13px; font-weight: 800; letter-spacing: -0.02em; }
 /* 카카오: 꼬리 높이만큼 아래 여백 → 꼬리 끝이 좌표 */
 .pin-k { padding-bottom: 6px; }
 
@@ -48,7 +51,7 @@
 }
 .place-ico { display: inline-grid; place-items: center; }
 .place-ico svg { width: 12px; height: 12px; }
-.place-ico b { font-size: 11px; font-weight: 900; }
+.place-ico b { font-size: 11px; font-weight: 800; }
 .place-label { font-weight: 700; }
 .place-pin em { /* 아이콘만 있는 시설: 마우스 올리면 이름 (흰 말풍선) */
   display: none; position: absolute; bottom: calc(100% + 8px); left: 50%; transform: translateX(-50%);
@@ -172,12 +175,11 @@
   background: var(--pc); color: #fff; line-height: 1; flex-shrink: 0;
 }
 .mc-emblem svg { width: 11px; height: 11px; }
-.mc-emblem b { font-size: 9px; font-weight: 900; letter-spacing: -0.06em; }
+.mc-emblem b { font-size: 9px; font-weight: 800; letter-spacing: -0.06em; }
 /* 많이 축소했을 때 학교는 이름이 곧 표시라 숨기지 않음 */
 .zoom-far .place-school .place-label { display: inline; }
 
 /* ---------- 왼쪽 사이드바 접기 ---------- */
-.map-page { transition: grid-template-columns 0.2s ease; }
 .map-page.side-closed { grid-template-columns: 0 1fr; }
 .map-page.side-closed .map-side { overflow: hidden; border-right: 0; }
 .side-toggle {

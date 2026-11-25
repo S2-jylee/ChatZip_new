@@ -138,7 +138,7 @@ export default function VectorMap({
       const wrap = document.createElement('div');
       wrap.className = 'pin-ml';
       const pin = document.createElement('div');
-      pin.className = pinClass(tierOf(apt.price), false);
+      pin.className = pinClass(tierOf(apt.price), false, apt.live);
       pin.title = apt.name;
       pin.innerHTML = pinHtml(apt);
       wrap.appendChild(pin);

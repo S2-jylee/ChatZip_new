@@ -64,7 +64,7 @@ function Bar({ label, value, ratio, kind }) {
     <div className="bar-row">
       <span className="bar-label">{label}</span>
       <div className="bar-track">
-        <div className={`bar-fill bar-${kind}`} style={{ width: `${Math.max(ratio * 100, 4)}%` }} />
+        <div className={`bar-fill bar-${kind}`} style={{ transform: `scaleX(${Math.max(ratio, 0.04)})` }} />
       </div>
       <span className="bar-value">{formatPrice(value)}</span>
     </div>

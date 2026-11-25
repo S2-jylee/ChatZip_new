@@ -279,7 +279,7 @@ export default function MapPage({ type = DEFAULT_TYPE }) {
             type="search"
             value={qInput}
             onChange={(e) => setQInput(e.target.value)}
-            placeholder="단지명, 지역(구 · 동)으로 검색"
+            placeholder="단지명, 지역(구, 동)으로 검색"
             aria-label="매물 검색"
             enterKeyHint="search"
           />
@@ -319,7 +319,7 @@ export default function MapPage({ type = DEFAULT_TYPE }) {
           <div className="msh-info">
             <div><strong className="count">{loading ? '…' : visible.length.toLocaleString()}</strong><span className="msh-unit">건</span></div>
             <small className="msh-meta">
-              {onlyInView ? '지도 영역 안 · ' : ''}전체 {apartments.length}건{viewedCount > 0 ? ` · 본 매물 ${viewedCount}` : ''}
+              {onlyInView ? '지도 영역 안, ' : ''}전체 {apartments.length}건{viewedCount > 0 ? `, 본 매물 ${viewedCount}` : ''}
             </small>
           </div>
           <select className="select select-sm" value={sort} onChange={(e) => setSort(e.target.value)} aria-label="정렬">
@@ -381,8 +381,8 @@ export default function MapPage({ type = DEFAULT_TYPE }) {
         {hintOn && !detailId && !hovered && !loading && apartments.length > 0 && (
           <div className="map-hint">
             {/* 터치 화면엔 마우스 올림이 없어 짧은 문구 */}
-            <span className="hint-mouse">마커에 마우스를 올리면 요약 · 클릭하면 상세 정보와 단지 영역</span>
-            <span className="hint-touch">마커를 누르면 요약 · 한 번 더 누르면 상세 정보</span>
+            <span className="hint-mouse">마커에 마우스를 올리면 요약, 클릭하면 상세 정보와 단지 영역</span>
+            <span className="hint-touch">마커를 누르면 요약, 한 번 더 누르면 상세 정보</span>
           </div>
         )}
       </section>

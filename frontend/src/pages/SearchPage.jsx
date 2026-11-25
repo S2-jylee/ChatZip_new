@@ -82,7 +82,7 @@ function ConditionSearch() {
     <div className="two-col">
       <form className="card form" onSubmit={submit}>
         <h2 className="card-title">검색 조건</h2>
-        <label className="field"><span>단지명 · 동</span>
+        <label className="field"><span>단지명 또는 동</span>
           <input name="q" value={form.q} onChange={change} placeholder="예: 래미안, 아현동" />
         </label>
         <label className="field"><span>지역</span>
@@ -141,7 +141,7 @@ export default function SearchPage() {
     <div className="container section">
       <header className="page-head">
         <h1>매물찾기</h1>
-        <p className="muted">성남 · 용인 · 수원 아파트 매물을 조건으로 검색하거나, 예산에 맞춰 추천받으세요.</p>
+        <p className="muted">성남, 용인, 수원 아파트 매물을 조건으로 검색하거나, 예산에 맞춰 추천받으세요.</p>
       </header>
       <div className="page-tabs" role="tablist" aria-label="찾는 방법">
         {TABS.map(([k, label]) => (

@@ -29,7 +29,7 @@ export default function ConditionForm({ onSubmit, loading, initial }) {
     <form className="card form" onSubmit={handleSubmit}>
       <h2 className="card-title">내 조건</h2>
       <label className="field">
-        <span>예산 · 최대 가격 (만원) *</span>
+        <span>예산(최대 가격, 만원) *</span>
         <input type="number" name="maxPrice" min="0" step="1000" placeholder="예: 80000 (8억)" value={form.maxPrice} onChange={change} />
       </label>
       <label className="field">

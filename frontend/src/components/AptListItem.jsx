@@ -49,7 +49,7 @@ export default function AptListItem({ apt, rank, active, onHover, actions, leadi
             {apt.score !== undefined && <span className="badge">적합도 {apt.score}</span>}
           </div>
           <span className="apt-meta">
-            {apt.gu} {apt.dong} · {area} · {floorText(apt.floor)} · {apt.builtYear}년
+            {apt.gu} {apt.dong}, {area}, {floorText(apt.floor)}, {apt.builtYear}년
           </span>
           {apt.nearestStation && <span className="apt-station">{stationText(apt.nearestStation)}</span>}
           {!card && detailTags(apt).length > 0 && (

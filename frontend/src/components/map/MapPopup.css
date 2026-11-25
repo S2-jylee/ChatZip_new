@@ -57,7 +57,7 @@ div:has(> .map-popup-kakao) { pointer-events: none !important; }
 /* 터치 화면: 말풍선 안 '상세 정보 보기' 버튼 (손가락으로 누르기 좋게 높이 확보) */
 .map-tip-more {
   margin-top: 8px; padding: 8px 0; border: 0; border-radius: 6px;
-  background: var(--btn-soft, #fff3e8); color: var(--btn, #f47b20);
+  background: var(--btn-soft); color: var(--accent-text);
   font: inherit; font-size: 13px; font-weight: 800; cursor: pointer;
 }
 .map-tip-price span { font-size: 12px; color: var(--muted); font-weight: 600; }

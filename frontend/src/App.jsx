@@ -10,9 +10,12 @@ import MapPage from './pages/MapPage';
 import DetailPage from './pages/DetailPage';
 import PredictPage from './pages/PredictPage';
 import FavoritesPage from './pages/FavoritesPage';
+import MypageIndex from './pages/mypage/MypageIndex';
+import MypageFavorites from './pages/mypage/MypageFavorites';
+import MypageProfile from './pages/mypage/MypageProfile';
 import LoginPage from './pages/LoginPage';
 import NotFoundPage from './pages/NotFoundPage';
-import { USE_MOCK } from './api/client';
+import { LIVE_APIS, USE_MOCK } from './api/client';
 import SearchPage from './pages/SearchPage';
 import AnalysisPage from './pages/AnalysisPage';
 import { MAP_PATH } from './constants/menus';
@@ -66,7 +69,10 @@ export default function App() {
     <div className="app">
       <Header />
       {USE_MOCK && (
-        <div className="mock-banner">MOCK · 가짜 데이터 (테스트 test@chatzip.kr / test1234)</div>
+        <div className="mock-banner">
+          MOCK · 가짜 데이터 (테스트 test@chatzip.kr / test1234)
+          {LIVE_APIS.length > 0 && ` · 실서버 연결: ${LIVE_APIS.join(', ')}`}
+        </div>
       )}
       <main className="main">
         <Routes>
@@ -81,6 +87,10 @@ export default function App() {
           <Route path="/recommend" element={<Redirect to="/search" extra={{ tab: 'recommend' }} />} />
           <Route path="/predict" element={<PredictPage />} />
           <Route path="/favorites" element={<ProtectedRoute><FavoritesPage /></ProtectedRoute>} />
+          {/* 마이페이지 (김미정 html → React, 원본 그대로) */}
+          <Route path="/mypage" element={<MypageIndex />} />
+          <Route path="/mypage/favorites" element={<MypageFavorites />} />
+          <Route path="/mypage/profile" element={<MypageProfile />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<LoginPage mode="signup" />} />
           <Route path="*" element={<NotFoundPage />} />

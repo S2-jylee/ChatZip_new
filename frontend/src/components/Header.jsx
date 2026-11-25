@@ -7,6 +7,7 @@ import { MAIN_MENUS } from '../constants/menus';
 
 // 로그인 이름(○○님) 드롭다운 메뉴 항목
 const USER_LINKS = [
+  { to: '/mypage', label: '마이페이지' },
   { to: '/favorites', label: '관심 매물' },
   { to: '/search?tab=recommend', label: '맞춤 추천' },
 ];
@@ -145,7 +146,7 @@ export default function Header() {
   } else if (!checking) {
     // 로그인 전: 사람 아이콘 하나 → 로그인 모달 (회원가입은 모달 안에서 전환)
     authArea = (
-      <button type="button" className="login-icon" onClick={() => openAuth('login')} aria-label="로그인 · 회원가입" title="로그인 · 회원가입">
+      <button type="button" className="login-icon" onClick={() => openAuth('login')} aria-label="로그인 또는 회원가입" title="로그인 · 회원가입">
         <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
           <circle cx="12" cy="8" r="4" /><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7" />
         </svg>

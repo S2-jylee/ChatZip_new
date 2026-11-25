@@ -91,15 +91,14 @@ export default function CompareModal({ apartments, onClose }) {
     },
   ];
 
-  const sources = [...new Set(apartments.map((a) => dataSourceOf(a.type)))].join(' · ');
+  const sources = [...new Set(apartments.map((a) => dataSourceOf(a.type)))].join(', ');
 
   return createPortal(
     <div className="modal-backdrop" onMouseDown={(e) => { if (e.target === e.currentTarget) onClose(); }}>
       <div className="modal cmp-modal" role="dialog" aria-modal="true" aria-label="관심 매물 비교" tabIndex={-1} ref={ref}>
         <header className="modal-head">
           <div>
-            <span className="eyebrow">관심 매물</span>
-            <h2 className="modal-title">매물 비교 <small className="muted">{apartments.length}개</small></h2>
+            <h2 className="modal-title">관심 매물 비교 <small className="muted">{apartments.length}개</small></h2>
           </div>
           <button type="button" className="modal-close" onClick={onClose} aria-label="닫기">×</button>
         </header>
@@ -112,7 +111,7 @@ export default function CompareModal({ apartments, onClose }) {
                 {apartments.map((a) => (
                   <th key={a.aptId} scope="col">
                     <strong className="cmp-name">{a.name}</strong>
-                    <Link to={`/favorites?detail=${a.aptId}`} className="cmp-link" onClick={onClose}>상세 보기 →</Link>
+                    <Link to={`/favorites?detail=${a.aptId}`} className="cmp-link" onClick={onClose}>상세 보기</Link>
                   </th>
                 ))}
               </tr>

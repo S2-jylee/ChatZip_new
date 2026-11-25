@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { addFavorite, getFavorites, removeFavorite } from '../api/favorites';
 import { errorMessage, statusOf } from '../api/client';
+import Icon from './Icon';
 
 /** 관심 매물 저장/해제 토글. 비로그인이면 로그인 페이지로 보냄. compact = 지도 미리보기용 작은 버튼 */
 export default function FavoriteButton({ aptId, compact = false, icon = false }) {
@@ -74,7 +75,7 @@ export default function FavoriteButton({ aptId, compact = false, icon = false })
       aria-pressed={saved}
       title={saved ? '관심 매물에서 빼기' : '관심 매물에 저장'}
     >
-      {saved ? '♥' : '♡'} {compact ? (saved ? '저장됨' : '저장') : (saved ? '관심 매물 저장됨' : '관심 매물 저장')}
+      <Icon name="heart" filled={saved} />{compact ? (saved ? '저장됨' : '저장') : (saved ? '관심 매물 저장됨' : '관심 매물 저장')}
     </button>
   );
 

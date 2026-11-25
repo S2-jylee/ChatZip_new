@@ -1,0 +1,800 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap');
+
+/* =========================
+   1. 공통 스타일
+========================= */
+.mp-favorites {
+    --navy: #1B2A41;
+    --orange: #C4561C;
+    --orange-hover: #A94715;
+    --orange-light: #FFF0E5;
+    --ivory: #F4F2EE;
+    --gray: #5B6B80;
+    --border: #E3DCD2;
+    --white: #FFFFFF;
+}
+
+.mp-favorites * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.mp-favorites {
+    background: var(--ivory);
+    color: var(--navy);
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 14px;
+}
+
+.mp-favorites button,
+.mp-favorites select {
+    font: inherit;
+}
+
+.mp-favorites button {
+    cursor: pointer;
+}
+
+.mp-favorites a {
+    text-decoration: none;
+}
+
+/* =========================
+   2. 상단 네비게이션
+========================= */
+.mp-favorites .top-nav {
+    width: 100%;
+    height: 75px;
+    padding: 0 55px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
+
+    background: var(--navy);
+    border-bottom: 1px solid #263950;
+}
+
+/* 로고 */
+.mp-favorites .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    color: white;
+    font-size: 24px;
+    font-weight: 800;
+    white-space: nowrap;
+}
+
+.mp-favorites .logo-icon {
+    color: white;
+    font-size: 29px;
+}
+
+.mp-favorites .nav-logo b {
+    color: var(--orange);
+}
+
+/* 상단 메뉴 */
+.mp-favorites .nav-menu {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.mp-favorites .nav-menu a {
+    height: 100%;
+    display: flex;
+    align-items: center;
+
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+    white-space: nowrap;
+    cursor: pointer;
+
+    border-bottom: 3px solid transparent;
+    transition: 0.2s;
+}
+
+.mp-favorites .nav-menu a:hover {
+    color: #F0A275;
+    border-bottom-color: var(--orange);
+}
+
+/* 마지막 관심매물 메뉴 강조 */
+.mp-favorites .nav-menu a:last-child {
+    color: #F0A275;
+    border-bottom-color: var(--orange);
+}
+
+/* 로그인 사용자 */
+.mp-favorites .nav-user {
+    color: white;
+    font-size: 13px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+/* =========================
+   3. 전체 레이아웃
+========================= */
+.mp-favorites .container {
+    width: 100%;
+    max-width: 1500px;
+    margin: 0 auto;
+    padding: 30px 35px;
+
+    display: flex;
+    align-items: flex-start;
+    gap: 22px;
+}
+
+/* =========================
+   4. 왼쪽 사이드바
+========================= */
+.mp-favorites .sidebar {
+    width: 260px;
+    flex-shrink: 0;
+
+    padding: 22px 14px;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 15px;
+}
+
+.mp-favorites .sidebar .logo {
+    margin-bottom: 22px;
+    padding: 0 10px;
+
+    color: var(--orange);
+    font-size: 23px;
+    font-weight: 800;
+}
+
+/* 프로필 */
+.mp-favorites .profile {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    padding: 15px 12px;
+    margin-bottom: 15px;
+
+    background: #F8F6F3;
+    border-radius: 11px;
+}
+
+.mp-favorites .profile-icon {
+    width: 45px;
+    height: 45px;
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: var(--orange);
+    color: white;
+
+    border-radius: 50%;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.mp-favorites .profile-name {
+    color: var(--navy);
+    font-size: 14px;
+    font-weight: 700;
+}
+
+/* 회원정보 수정 버튼 */
+.mp-favorites .profile-edit {
+    width: 100%;
+    height: 43px;
+
+    margin-bottom: 22px;
+    background: white;
+    color: var(--orange);
+
+    border: 1px solid var(--orange);
+    border-radius: 9px;
+
+    font-size: 13px;
+    font-weight: 700;
+    transition: 0.2s;
+}
+
+.mp-favorites .profile-edit:hover {
+    background: var(--orange-light);
+}
+
+/* 사이드바 메뉴 */
+.mp-favorites .menu {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+}
+
+.mp-favorites .menu-item {
+    display: flex;
+    align-items: center;
+
+    min-height: 47px;
+    padding: 12px 15px;
+
+    color: var(--navy);
+    font-size: 14px;
+    font-weight: 600;
+
+    border-radius: 9px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.mp-favorites .menu-item:hover {
+    background: var(--orange-light);
+    color: var(--orange);
+}
+
+/* 선택된 관심매물 */
+.mp-favorites .menu-item.active {
+    background: var(--orange);
+    color: white;
+}
+
+.mp-favorites .menu-item.active:hover {
+    background: var(--orange-hover);
+    color: white;
+}
+
+/* =========================
+   5. 메인 콘텐츠
+========================= */
+.mp-favorites .main {
+    flex: 1;
+    min-width: 0;
+
+    padding: 25px;
+    background: white;
+
+    border: 1px solid var(--border);
+    border-radius: 16px;
+}
+
+/* 관심매물 헤더 */
+.mp-favorites .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+
+    margin-bottom: 23px;
+}
+
+.mp-favorites .header-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 9px;
+}
+
+.mp-favorites .heart-title {
+    color: var(--orange);
+    font-size: 28px;
+}
+
+.mp-favorites .header-title h2 {
+    color: var(--orange);
+    font-size: 27px;
+    font-weight: 800;
+}
+
+/* 관심매물 개수 */
+.mp-favorites .count {
+    padding: 5px 14px;
+
+    background: var(--orange-light);
+    color: var(--orange);
+
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.mp-favorites .description {
+    color: var(--gray);
+    font-size: 13px;
+}
+
+/* 가격 정렬 */
+.mp-favorites .sort {
+    min-width: 150px;
+    height: 43px;
+    padding: 0 13px;
+    margin-bottom: 10px;
+
+    background: white;
+    color: var(--navy);
+
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    outline: none;
+
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.mp-favorites .sort:focus {
+    border-color: var(--orange);
+}
+
+/* =========================
+   6. 관심매물 목록
+========================= */
+.mp-favorites .property-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* 매물 카드 */
+.mp-favorites .property-card {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+
+    min-width: 0;
+    padding: 13px;
+
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+
+    transition: 0.2s;
+}
+
+.mp-favorites .property-card:hover {
+    border-color: var(--orange);
+    box-shadow: 0 4px 15px rgba(27,42,65,0.06);
+}
+
+/* 매물 이미지 */
+.mp-favorites .property-image {
+    width: 185px;
+    height: 115px;
+    flex-shrink: 0;
+
+    object-fit: cover;
+    border-radius: 9px;
+    background: var(--ivory);
+}
+
+/* 매물 설명 */
+.mp-favorites .property-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.mp-favorites .property-title {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+/* 아파트 태그 */
+.mp-favorites .tag {
+    padding: 5px 11px;
+
+    background: var(--orange-light);
+    color: var(--orange);
+
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.mp-favorites .property-name {
+    color: var(--navy);
+    font-size: 18px;
+    font-weight: 800;
+}
+
+.mp-favorites .location {
+    margin-bottom: 10px;
+    color: var(--gray);
+    font-size: 12px;
+}
+
+.mp-favorites .details {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 14px;
+}
+
+.mp-favorites .details span {
+    color: var(--gray);
+    font-size: 12px;
+}
+
+/* =========================
+   7. 가격 및 버튼
+========================= */
+.mp-favorites .price-area {
+    min-width: 185px;
+    flex-shrink: 0;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 5px;
+
+    padding-left: 20px;
+    border-left: 1px solid var(--border);
+}
+
+.mp-favorites .price-label {
+    color: var(--navy);
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.mp-favorites .price {
+    color: var(--orange);
+    font-size: 25px;
+    font-weight: 800;
+    white-space: nowrap;
+}
+
+.mp-favorites .card-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+/* 관심 하트 */
+.mp-favorites .favorite {
+    width: 43px;
+    height: 40px;
+
+    background: white;
+    color: var(--orange);
+
+    border: 1px solid var(--orange);
+    border-radius: 9px;
+
+    font-size: 23px;
+    transition: 0.2s;
+}
+
+.mp-favorites .favorite:hover {
+    background: var(--orange-light);
+}
+
+.mp-favorites .favorite.off {
+    color: #999999;
+}
+
+/* 상세보기 버튼 */
+.mp-favorites .detail-btn {
+    height: 40px;
+    padding: 0 16px;
+
+    background: var(--orange);
+    color: white;
+
+    border: 1px solid var(--orange);
+    border-radius: 9px;
+
+    font-size: 13px;
+    font-weight: 700;
+    white-space: nowrap;
+    transition: 0.2s;
+}
+
+.mp-favorites .detail-btn:hover {
+    background: var(--orange-hover);
+}
+
+/* =========================
+   8. 최근 조회한 매물
+========================= */
+.mp-favorites .recent-view-section {
+    margin-top: 32px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+}
+
+.mp-favorites .recent-view-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    margin-bottom: 18px;
+}
+
+.mp-favorites .recent-view-header h3 {
+    color: var(--orange);
+    font-size: 22px;
+    font-weight: 800;
+}
+
+.mp-favorites .recent-view-header span {
+    padding: 5px 13px;
+
+    background: var(--orange-light);
+    color: var(--orange);
+
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.mp-favorites .recent-view-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* 최근 조회 카드 */
+.mp-favorites .recent-view-item {
+    display: flex;
+    align-items: center;
+    gap: 17px;
+
+    padding: 10px 13px;
+
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 11px;
+
+    transition: 0.2s;
+}
+
+.mp-favorites .recent-view-item:hover {
+    border-color: var(--orange);
+    background: #FFFCFA;
+}
+
+/* 최근 조회 이미지 */
+.mp-favorites .recent-view-image {
+    width: 135px;
+    height: 80px;
+    flex-shrink: 0;
+    overflow: hidden;
+
+    border-radius: 8px;
+    background: var(--ivory);
+}
+
+.mp-favorites .recent-view-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* 최근 조회 정보 */
+.mp-favorites .recent-view-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.mp-favorites .recent-view-name {
+    margin-bottom: 5px;
+
+    color: var(--navy);
+    font-size: 15px;
+    font-weight: 800;
+}
+
+.mp-favorites .recent-view-address {
+    margin-bottom: 7px;
+    color: var(--gray);
+    font-size: 12px;
+}
+
+.mp-favorites .recent-view-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.mp-favorites .recent-view-tags span {
+    padding: 4px 9px;
+
+    background: var(--ivory);
+    color: var(--gray);
+
+    border-radius: 20px;
+    font-size: 11px;
+}
+
+/* 가격과 조회 날짜 */
+.mp-favorites .recent-view-item > div:nth-last-child(2) {
+    min-width: 130px;
+    flex-shrink: 0;
+    text-align: right;
+}
+
+.mp-favorites .recent-view-price {
+    color: var(--orange);
+    font-size: 17px;
+    font-weight: 800;
+    white-space: nowrap;
+}
+
+.mp-favorites .recent-view-date {
+    margin-top: 6px;
+    color: var(--gray);
+    font-size: 11px;
+}
+
+/* 최근 조회 상세보기 */
+.mp-favorites .recent-view-button {
+    height: 39px;
+    padding: 0 14px;
+    flex-shrink: 0;
+
+    background: white;
+    color: var(--orange);
+
+    border: 1px solid var(--orange);
+    border-radius: 9px;
+
+    font-size: 12px;
+    font-weight: 700;
+    white-space: nowrap;
+    transition: 0.2s;
+}
+
+.mp-favorites .recent-view-button:hover {
+    background: var(--orange);
+    color: white;
+}
+
+/* =========================
+   9. 태블릿 반응형
+========================= */
+@media (max-width: 1200px) {
+    .mp-favorites .top-nav {
+        padding: 0 25px;
+    }
+
+    .mp-favorites .nav-menu {
+        gap: 15px;
+    }
+
+    .mp-favorites .container {
+        gap: 16px;
+        padding: 22px 18px;
+    }
+
+    .mp-favorites .sidebar {
+        width: 220px;
+    }
+
+    .mp-favorites .main {
+        padding: 20px;
+    }
+
+    .mp-favorites .property-card {
+        flex-wrap: wrap;
+    }
+
+    .mp-favorites .price-area {
+        width: 100%;
+        flex-direction: row;
+        justify-content: flex-end;
+        align-items: center;
+        gap: 15px;
+
+        padding: 10px 0 0;
+        border-left: none;
+        border-top: 1px solid var(--border);
+    }
+
+    .mp-favorites .card-actions {
+        margin-top: 0;
+    }
+}
+
+/* =========================
+   10. 모바일 반응형
+========================= */
+@media (max-width: 850px) {
+    .mp-favorites .top-nav {
+        height: auto;
+        min-height: 70px;
+        padding: 15px;
+        flex-wrap: wrap;
+    }
+
+    .mp-favorites .nav-menu {
+        order: 3;
+        width: 100%;
+        height: auto;
+        overflow-x: auto;
+        gap: 20px;
+    }
+
+    .mp-favorites .nav-menu a {
+        min-height: 40px;
+    }
+
+    .mp-favorites .container {
+        flex-direction: column;
+        padding: 15px;
+    }
+
+    .mp-favorites .sidebar {
+        width: 100%;
+    }
+
+    .mp-favorites .main {
+        width: 100%;
+        padding: 17px;
+    }
+
+    .mp-favorites .header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .mp-favorites .header-title h2 {
+        font-size: 24px;
+    }
+
+    .mp-favorites .property-card {
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .mp-favorites .property-image {
+        width: 100%;
+        height: 170px;
+    }
+
+    .mp-favorites .property-info {
+        flex: 1 1 100%;
+    }
+
+    .mp-favorites .price-area {
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    .mp-favorites .recent-view-item {
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+
+    .mp-favorites .recent-view-image {
+        width: 90px;
+        height: 80px;
+    }
+
+    .mp-favorites .recent-view-info {
+        flex-basis: calc(100% - 105px);
+    }
+
+    .mp-favorites .recent-view-item > div:nth-last-child(2) {
+        flex: 1;
+        text-align: left;
+    }
+
+    .mp-favorites .recent-view-button {
+        margin-left: auto;
+    }
+}

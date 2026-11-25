@@ -54,7 +54,7 @@ function GuDetail({ gu }) {
         <div>
           <h2>{d.gu} 아파트 시세</h2>
         </div>
-        <Link to={`${MAP_PATH}?gu=${encodeURIComponent(d.gu)}`} className="btn btn-ghost btn-sm">지도에서 보기 →</Link>
+        <Link to={`${MAP_PATH}?gu=${encodeURIComponent(d.gu)}`} className="btn btn-ghost btn-sm">지도에서 보기</Link>
       </div>
 
       <div className="an-kpis">
@@ -80,7 +80,7 @@ function GuDetail({ gu }) {
             <Bar key={b.label} label={b.label} value={b.avgPerPyeong} max={maxAge}
               text={b.count ? formatPriceCompact(b.avgPerPyeong) : '거래 없음'} sub={b.count ? `${b.count}건` : ''} />
           ))}
-          <p className="muted small">평균 준공연도 {d.avgBuiltYear}년</p>
+          <p className="muted small">평균 준공연도 {d.avgBuiltYear ? `${d.avgBuiltYear}년` : '정보 없음'}</p>
         </section>
       </div>
 
@@ -93,7 +93,7 @@ function GuDetail({ gu }) {
                 <span className="recent-rank">{i + 1}</span>
                 <span className="recent-info">
                   <strong>{apt.name}</strong>
-                  <span className="muted small">{apt.dong} · 전용 {Math.round(apt.areaM2)}㎡ · {apt.floor}층</span>
+                  <span className="muted small">{apt.dong}, 전용 {Math.round(apt.areaM2)}㎡, {apt.floor}층</span>
                 </span>
                 <span className="recent-date muted small">{formatDate(apt.dealDate)}</span>
                 <span className="recent-price">{formatPrice(apt.price)}</span>
@@ -101,7 +101,7 @@ function GuDetail({ gu }) {
             );
             // 실거래는 등록 매물이 아닐 수 있음 → 매물 번호가 있을 때만 상세로 이동
             return (
-              <li key={apt.aptId ?? `${apt.dealDate}-${i}`}>
+              <li key={`${apt.aptId ?? ''}-${apt.dealDate}-${i}`}>
                 {apt.aptId != null
                   ? <Link to={detailHref(apt.aptId)} className="recent-row">{row}</Link>
                   : <div className="recent-row">{row}</div>}
@@ -184,10 +184,10 @@ export default function AnalysisPage() {
     <div className="container section">
       <header className="page-head">
         <h1>지역별분석</h1>
-        <p className="muted">성남 · 용인 · 수원 구별 아파트 실거래 시세를 비교하고, 구를 골라 면적 · 연식별 시세를 확인하세요.</p>
+        <p className="muted">성남, 용인, 수원 구별 아파트 실거래 시세를 비교하고, 구를 골라 면적과 연식별 시세를 확인하세요.</p>
       </header>
       {content}
-      <p className="muted small source">데이터 출처: {DATA_SOURCE} · 평당가 = 거래가 ÷ (전용면적 ÷ 3.3058)</p>
+      <p className="muted small source">데이터 출처: {DATA_SOURCE}. 평당가 = 거래가 ÷ (전용면적 ÷ 3.3058)</p>
     </div>
   );
 }

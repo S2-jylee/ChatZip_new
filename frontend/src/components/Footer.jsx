@@ -19,12 +19,12 @@ export default function Footer() {
           <Link to="/" className="footer-logo" aria-label="ChatZip 홈">
             Chat<span className="logo-accent">Zip</span>
           </Link>
-          <p>경기도(성남 · 용인 · 수원) 매물 검색 · 지역 분석 · AI 예상가 서비스</p>
+          <p>경기도 성남, 용인, 수원의 매물 검색과 지역 분석, AI 예상가 서비스</p>
         </div>
 
         <nav className="footer-links" aria-label="하단 메뉴">
           <div>
-            <strong>찾기 · 분석</strong>
+            <strong>찾기와 분석</strong>
             {FIND_LINKS.map((l) => <Link key={l.to} to={l.to}>{l.label}</Link>)}
           </div>
           <div>
@@ -36,7 +36,7 @@ export default function Footer() {
 
       <div className="footer-bottom">
         <p>
-          데이터 출처: 국토교통부 실거래가 공개시스템 · 공공데이터포털.
+          데이터 출처: 국토교통부 실거래가 공개시스템, 공공데이터포털.
           AI 예상가는 <b>참고용</b> 추정치이며 실제 시세와 다를 수 있습니다.
         </p>
         <p>© {new Date().getFullYear()} ChatZip</p>

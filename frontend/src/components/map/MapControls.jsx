@@ -22,7 +22,7 @@ export default function MapControls({
     const parts = [];
     if (hiddenKinds.length < placeKinds.length) parts.push(`주변 시설 ${placeCount}곳${isSample ? ' (예시)' : ''}`);
     if (hiddenKinds.length) parts.push(`${hiddenKinds.map((k) => placeKind(k).label).join('·')}: 더 확대하면 표시`);
-    status = parts.join(' · ');
+    status = parts.join(', ');
   }
 
   return (

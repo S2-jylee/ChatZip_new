@@ -125,7 +125,7 @@ export default function DealChart({ deals, baseDate, predicted, months = 12, dea
           className="ch-tip"
           style={{ left: Math.min(Math.max(hp.cx, 70), width - 70), top: Math.max(hp.cy - 12, 0) }}
         >
-          <span>{formatDate(hp.dealDate)} · {hp.floor}층</span>
+          <span>{formatDate(hp.dealDate)}, {hp.floor}층</span>
           <strong>{formatDealPrice({ ...hp, dealType })}</strong>
         </div>
       )}

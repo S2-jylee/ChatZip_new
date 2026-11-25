@@ -3,6 +3,7 @@ import { getJeonseRatio } from '../../api/apartments';
 import { errorMessage, statusOf } from '../../api/client';
 import { formatDate, formatPrice } from '../../utils/format';
 import { ErrorBox, Loading } from '../Status';
+import Icon from '../Icon';
 
 // 전세가율 구간: 70% 미만 보통 · 70~80% 높은 편 · 80% 이상 깡통전세 주의
 function levelOf(ratio) {
@@ -38,7 +39,7 @@ export default function JeonseRatio({ aptId, source }) {
       {s.error && <ErrorBox message={s.error} />}
       {s.none && <p className="muted small">같은 건물에 비교할 매매·전세 거래가 없어 계산하지 못했습니다.</p>}
       {s.data && <RatioBody data={s.data} />}
-      <p className="source">출처: {source} · 참고용이며, 실제 시세와 다를 수 있습니다.</p>
+      <p className="source">출처: {source}. 참고용이며, 실제 시세와 다를 수 있습니다.</p>
     </section>
   );
 }
@@ -50,7 +51,7 @@ function RatioBody({ data }) {
     <div className={`ratio ratio-${lv.kind}`}>
       <div className="ratio-head">
         <strong className="ratio-num">{data.ratio.toFixed(1)}%</strong>
-        <span className="ratio-badge">{lv.kind === 'danger' ? '⚠ ' : ''}{lv.label}</span>
+        <span className="ratio-badge">{lv.kind === 'danger' && <Icon name="alert" className="icon-lead" />}{lv.label}</span>
       </div>
       <div className="ratio-bar" role="img" aria-label={`전세가율 ${data.ratio.toFixed(1)}%, ${lv.label}`}>
         <span className="ratio-zone z-ok" style={{ width: '70%' }} />

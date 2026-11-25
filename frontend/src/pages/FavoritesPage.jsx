@@ -70,7 +70,7 @@ export default function FavoritesPage() {
   else if (!items.length) {
     content = (
       <Empty title="저장한 관심 매물이 없습니다">
-        <Link to="/search">매물찾기에서 찾아보세요 →</Link>
+        <Link to="/search">매물찾기에서 찾아보세요</Link>
       </Empty>
     );
   } else {
@@ -119,7 +119,7 @@ export default function FavoritesPage() {
         <div className="compare-bar" role="region" aria-label="비교 선택">
           <div className="compare-bar-info">
             <b>{checked.length}</b> / {MAX}개 선택
-            <small>{checked.length < 2 ? '1개 더 고르면 비교할 수 있어요' : compareList.map((a) => a.name).join(' · ')}</small>
+            <small>{checked.length < 2 ? '1개 더 고르면 비교할 수 있어요' : compareList.map((a) => a.name).join(', ')}</small>
           </div>
           <div className="compare-bar-actions">
             <button type="button" className="btn btn-ghost btn-sm" onClick={() => setChecked([])}>해제</button>
@@ -137,7 +137,7 @@ export default function FavoritesPage() {
     <div className="container section">
       <header className="page-head">
         <h1>관심 매물 {!loading && !error && <small>{items.length}건</small>}</h1>
-        <p className="muted">저장한 매물을 모아 보고, 2~{MAX}개를 체크해 실거래가 · 평당가 · 준공연도를 비교해 보세요.</p>
+        <p className="muted">저장한 매물을 모아 보고, 2~{MAX}개를 체크해 실거래가, 평당가, 준공연도를 비교해 보세요.</p>
       </header>
       {content}
       {comparing && compareList.length >= 2 && (

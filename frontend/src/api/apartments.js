@@ -1,7 +1,12 @@
-import { api, USE_MOCK } from './client';
+import { api, isLive, USE_MOCK } from './client';
 import { cleanParams } from '../utils/format';
 import { itemsOf, monthsAgo, pick, toListing, toPage, toSalesParams, toTrade, toTransactionType, ymd } from './adapt';
 import * as mock from './mock';
+import * as live from './estates';
+
+// 실서버 단지 API 는 아파트 매매만 있음 → 그 외 종류는 계속 모의 데이터
+const liveAptSale = (f = {}) => isLive('estates') && (f.type || 'apt') === 'apt' && (f.deal || 'sale') === 'sale';
+const liveId = (id) => isLive('estates') && live.isLiveId(id);
 
 // 지도·목록 한 번에 받을 최대 건수 (수천 건이면 지도가 느려짐)
 const MAP_LIMIT = 500;
@@ -18,6 +23,11 @@ const MAP_LIMIT = 500;
  *   violation?: true | false | null  — 위반건축물 여부 (건축물대장, null = 확인 불가)
  */
 export async function searchApartments(filters = {}) {
+  if (liveAptSale(filters) && USE_MOCK) { // 실서버 단지(노란 마커) + 모의 매물 같이
+    const [real, fake] = await Promise.all([live.searchLive(cleanParams(filters)), mock.searchApartments(cleanParams(filters))]);
+    return [...real, ...fake];
+  }
+  if (liveAptSale(filters)) return live.searchLive(cleanParams(filters));
   if (USE_MOCK) return mock.searchApartments(cleanParams(filters));
   const { data } = await api.get('/api/sales', { params: toSalesParams({ ...filters, page: 0, size: MAP_LIMIT }) });
   return itemsOf(data).map(toListing);
@@ -25,6 +35,7 @@ export async function searchApartments(filters = {}) {
 
 /** GET /api/sales/{salesIdx}  — 없으면 404 */
 export async function getApartment(id) {
+  if (liveId(id)) return live.getLive(id);
   if (USE_MOCK) return mock.getApartment(id);
   const { data } = await api.get(`/api/sales/${id}`);
   return toListing(data);
@@ -37,6 +48,16 @@ export async function getApartment(id) {
  *  매매: price = 매매가 · 전세: price = 보증금 · 월세: price = 보증금, rent = 월세
  */
 export async function getDeals(id, months = 12) {
+  if (liveId(id)) {
+    const apt = await getApartment(id);
+    const trades = await live.getLiveTrades(id, {
+      startDate: monthsAgo(months),
+      minArea: apt.areaM2 ? Math.floor(apt.areaM2 - 1) : undefined,
+      maxArea: apt.areaM2 ? Math.ceil(apt.areaM2 + 1) : undefined,
+    });
+    const deals = trades.map((t) => ({ dealDate: t.soldDate, price: t.soldPrice, floor: t.soldFloor })).reverse();
+    return { baseDate: ymd(new Date()), deals };
+  }
   if (USE_MOCK) return mock.getDeals(id, months);
   const apt = await getApartment(id);
   const deals = await getEstateTrades(apt, apt.dealType, months);
@@ -67,6 +88,9 @@ async function getEstateTrades(apt, deal, months) {
  * 반환: { salePrice, jeonsePrice, ratio: 82.5, saleCount, jeonseCount, baseDate }  · 비교할 거래가 없으면 404
  */
 export async function getJeonseRatio(id) {
+  if (liveId(id)) { // 실서버엔 아직 전세 실거래가 없음
+    throw Object.assign(new Error('전세가율을 계산할 거래가 없습니다.'), { response: { status: 404, data: { message: '전세가율을 계산할 거래가 없습니다.' } } });
+  }
   if (USE_MOCK) return mock.getJeonseRatio(id);
   const apt = await getApartment(id);
   const [sales, jeonses] = await Promise.all([getEstateTrades(apt, 'sale', 12), getEstateTrades(apt, 'jeonse', 12)]);
@@ -147,6 +171,10 @@ export async function getPopular(limit = 5) {
  * 응답: { items, totalCount } → { content, totalElements, totalPages, page, size }
  */
 export async function searchPaged(params = {}) {
+  if (isLive('estates')) { // MOCK 이면 모의 매물도 같이 섞어서 정렬·페이지
+    const fake = USE_MOCK ? (await mock.searchPaged({ ...cleanParams(params), page: 0, size: 100000 })).content : [];
+    return live.searchPagedLive(cleanParams(params), fake);
+  }
   if (USE_MOCK) return mock.searchPaged(cleanParams(params));
   const { page = 0, size = 10 } = params;
   const { data } = await api.get('/api/sales', { params: toSalesParams({ ...params, type: 'apt', deal: 'sale', page, size }) });

@@ -120,7 +120,7 @@ export default function KakaoMap({
       // 주의: LatLng(위도 lat ≈ 37, 경도 lng ≈ 127) 순서 (기획서 11.2)
       const position = new kakao.maps.LatLng(apt.lat, apt.lng);
       const el = document.createElement('div');
-      el.className = pinClass(tierOf(apt.price), false);
+      el.className = pinClass(tierOf(apt.price), false, apt.live);
       el.title = apt.name;
       el.innerHTML = pinHtml(apt);
       const wrap = document.createElement('div');
